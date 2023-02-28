@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<button id="btn">点击</button>
+	</div>
+
+	<script>
+
+		function dobounce(fn, delay, immediate) {
+			if (typeof fn !== "function") {
+				throw new Error("fn must be function")
+			}
+
+			if (typeof delay === "undefined") {
+				delay = 600
+			}
+			if (typeof delay === "boolean") {
+				immediate = delay
+				delay = 600
+			}
+
+			if (typeof immediate !== "boolean") {
+				immediate = false
+			}
+
+			let timer = null 
+			return function(...args) {
+				clearTimeout(timer)
+				timer = setTimeout(() => {
+					fn.call(this, ...args)
+				}, delay)
+			}
+		}
+
+		function handleClick(e) {
+			console.log(e, this)
+		}
+
+		btn.onclick = dobounce(handleClick, false)
+	</script>
+</body>
+</html>

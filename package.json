@@ -1,0 +1,22 @@
+{
+  "name": "jiagou_kaikeba",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "serve": "yarn workspace 01_vue serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/1393679430/jiagou_kaikeba/issues"
+  },
+  "homepage": "https://gitlab.com/1393679430/jiagou_kaikeba#readme",
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
+}
