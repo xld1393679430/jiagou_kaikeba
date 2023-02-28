@@ -32,10 +32,19 @@
 
 			let timer = null 
 			return function(...args) {
+				let init = immediate && !timer
+				
 				clearTimeout(timer)
 				timer = setTimeout(() => {
-					fn.call(this, ...args)
+					timer = null
+					if (!immediate) {
+						fn.call(this, ...args)
+					}
 				}, delay)
+
+				if (init) {
+					fn.call(this, ...args)
+				}
 			}
 		}
 
@@ -43,7 +52,7 @@
 			console.log(e, this)
 		}
 
-		btn.onclick = dobounce(handleClick, false)
+		btn.onclick = dobounce(handleClick, true)
 	</script>
 </body>
 </html>

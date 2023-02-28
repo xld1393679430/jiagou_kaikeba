@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div style="height: 2000px">
+		<p>查看滚动节流效果</p>
+	</div>
+
+	<script>
+		function throttle(fn, delay) {
+			if (typeof fn !== 'function') {
+				throw new Error("fn must be function")
+			}
+
+			if (typeof delay === 'undefined') {
+				delay = 600
+			}
+
+			let prev = 0
+			let timer = null
+			return function (...args) {
+				let now = new Date()
+				const diff = delay - ( now - prev )
+				if (diff < 0) {
+					clearTimeout(timer)
+					timer = null
+					fn.call(this, ...args)
+					prev = new Date()
+				} else if (!timer) {
+					timer = setTimeout(() => {
+						clearTimeout(timer)
+						timer = null
+						fn.call(this, ...args)
+						prev = new Date()
+					}, diff)
+				}
+
+			}
+		}
+
+		function scrollFn() {
+			console.log('scrollFn');
+		}
+
+		// window.onscroll = throttle(scrollFn, 300)
+		// window.onscroll = scrollFn
+
+	</script>
+</body>
+
+</html>
