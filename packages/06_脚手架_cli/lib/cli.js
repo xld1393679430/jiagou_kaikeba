@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
-const yoScaffold = require('./');
+const yoScaffold = require('.');
 
 const cli = meow(`
 Usage
