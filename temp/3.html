@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <a href="#/home">home</a>
+  <a href="#/about">about</a>
+  <!-- 渲染路由模块 -->
+  <div id="view"></div>
+</body>
+<script>
+  let view = document.querySelector("#view")
+
+  let cb = (e) => {
+	console.log(111, e);
+    let hash = location.hash || "#/home";
+
+  }
+  window.addEventListener("hashchange", cb)
+  window.addEventListener("load", cb)
+</script>
+</html>

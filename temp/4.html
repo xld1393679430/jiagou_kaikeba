@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <a href='/home'>home</a>
+  <a href='/about'>about</a>
+  <!-- 渲染路由模块 -->
+  <div id="view"></div>
+</body>
+<script>
+  let view = document.querySelector("#view")
+
+  // 路由跳转
+  function push(path = "/home"){
+    window.history.pushState(null, '', path)
+    update()
+  }
+
+  // 更新路由模块视图
+  function update(){
+    view.innerHTML = location.pathname
+  }
+
+  window.addEventListener('popstate', ()=>{
+    update()
+  })
+
+  window.addEventListener('load', ()=>{
+    let links = document.querySelectorAll('a[href]')
+    links.forEach(el => el.addEventListener('click', (e) => {
+      // 阻止a标签默认行为
+      e.preventDefault()
+      push(el.getAttribute('href'))
+    }))
+	
+    push()
+  })
+</script>
+</html>
